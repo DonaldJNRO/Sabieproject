@@ -4461,69 +4461,87 @@ img.u-pull-left {
  *
  * ------------------------------------------------------------------- */
  .s-countdown {
-    padding-top    : var(--vspace-4_5);
-    padding-bottom : var(--vspace-4);
-    text-align: center; /* Center the countdown timer */
+    padding: var(--vspace-4_5) 0;
+    text-align: center;
     background-color: rgb(245, 245, 245);
 }
 
-.s-countdown .countdown-container {
+.countdown-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: var(--vspace-2);
-    /* Moving gradient background */
-    background: linear-gradient(45deg, #b00153, #9041f7, #626262),
-                linear-gradient(135deg, #5b5b5b, #b00153, #9041f7);
-    background-size: 200% 200%;
-    animation: movingGradient 30s linear infinite;
     border-radius: 10px;
-    /* Other styles */
+    background: linear-gradient(135deg, #b00153, #9041f7, #626262);
+    background-size: 200% 200%; /* Double the size to make sure the gradient has space to move */
+    animation: movingGradient 30s linear infinite; 
 }
 
-/* ... other styles ... */
-
-/* Moving gradient animation */
 @keyframes movingGradient {
-    0% { background-position: 0% 50%, 100% 50%; }
-    25% { background-position: 100% 50%, 0% 100%; }
-    50% { background-position: 100% 100%, 100% 0%; }
-    75% { background-position: 0% 100%, 0% 0%; }
-    100% { background-position: 0% 50%, 100% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-/* Media queries and other styles remain the same */
 
-.s-countdown .time-section {
-    margin: 0 20px;
+.time-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 var(--gutter);
 }
 
-.s-countdown .countdown-number {
-    font-size: 3em; /* Large font size for the countdown */
+.countdown-number {
+    font-size: 3em; /* Adjust base font size as needed */
+    color: #fff;
     font-weight: bold;
-    color: #fff; /* White text color */
 }
 
-.s-countdown .countdown-label {
+.countdown-label {
     font-size: 1em;
     color: #fff;
     text-transform: uppercase;
-    margin-top: -10px;
     letter-spacing: 1px;
+    font-weight: bold;
+    padding-top: 20px;
 }
 
-@media screen and (max-width: 1200px) {
-    .s-countdown__content {
-        max-width: 960px;
-        flex-direction: column; /* Stack vertically on smaller screens */
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    .countdown-container {
+        flex-direction: column; /* Stack time sections vertically */
+    }
+
+    .time-section {
+        margin: var(--vspace-1) 0; /* Adjust space between stacked items */
+    }
+
+    .countdown-number {
+        font-size: 6vw; /* Adjust font size based on viewport width */
+    }
+
+    .countdown-label {
+        font-size: 3.5vw;
     }
 }
 
-@media screen and (max-width: 800px) {
-    .s-countdown__content {
-        max-width: 600px;
+/* Smaller mobiles */
+@media screen and (max-width: 400px) {
+    .countdown-number {
+        font-size: 8vw;
+    }
+
+    .countdown-label {
+        font-size: 4vw;
     }
 }
+
 
 
 
